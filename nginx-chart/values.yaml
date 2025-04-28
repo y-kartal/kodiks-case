@@ -1,0 +1,24 @@
+namespace: "nginx-test"
+
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+resources: {}
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+env:
+  - name: EXAMPLE_ENV
+    value: "This is a test env var"
