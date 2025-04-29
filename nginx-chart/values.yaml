@@ -1,30 +1,30 @@
-namespace: "nginx-test"
+namespace: nginx
 
-replicaCount: 2
-
-image:
-  repository: nginx
-  tag: latest
-  pullPolicy: IfNotPresent
+deployment:
+  name: nginx-deployment
+  replicas: 1
+  image: nginx:latest
+  containerPort: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 64Mi
+    limits:
+      cpu: 500m
+      memory: 128Mi
 
 service:
+  name: nginx-service
   type: NodePort
   port: 80
+  targetPort: 80
+  nodePort: 30080
 
-resources:
-  requests:
-    cpu: "100m"
-    memory: "128Mi"
-  limits:
-    cpu: "500m"
-    memory: "256Mi"
-
-autoscaling:
-  enabled: true
+hpa:
+  name: nginx-hpa
   minReplicas: 2
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 80
+  averageUtilization: 50
 
-env:
-  - name: EXAMPLE_ENV
-    value: "This is a test env var"
+networkPolicy:
+  name: nginx-allow-same-namespace

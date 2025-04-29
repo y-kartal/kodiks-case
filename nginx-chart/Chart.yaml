@@ -1,6 +1,6 @@
 apiVersion: v2
-name: nginx-helm-chart
-description: A Helm chart to deploy NGINX server
+name: nginx-chart
+description: A Helm chart for deploying Nginx with HPA, Service, and NetworkPolicy
 type: application
-version: 1.0.0
-appVersion: "1.0.0"
+version: 0.1.0
+appVersion: "1.0"
