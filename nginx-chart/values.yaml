@@ -15,10 +15,9 @@ deployment:
 
 service:
   name: nginx-service
-  type: NodePort
+  type: ClusterIP  
   port: 80
   targetPort: 80
-  nodePort: 30080
 
 hpa:
   name: nginx-hpa
